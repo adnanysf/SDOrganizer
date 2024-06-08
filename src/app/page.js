@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image'
 import styles from './page.module.css'
 import { open } from '@tauri-apps/api/dialog';
@@ -14,56 +15,16 @@ if (typeof window !== 'undefined') {
 }
 
 export default function Home() {
-  const keysToExtract = ['Make', 'Model', 'DateTime'];
-  const [metaData, setMetaData] = useState({});
-
-  useEffect(() => {
-    localStorage.setItem('metaData', JSON.stringify(metaData));
-  }, [metaData]);
-
-  useEffect(() => {
-    const storedMetaData = localStorage.getItem('metaData');
-    if (storedMetaData) {
-      setMetaData(JSON.parse(storedMetaData));
-    }
-  }, []);
-  const selectDirectory = async () => {
-    if (!dialog) return;
-    try {
-      const path = await dialog.open({ directory: true });
-      console.log(path);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const readExifData = (imageFile) => {
-    EXIF.getData(imageFile, function() {
-      var allTags = EXIF.getAllTags(this);
-      setMetaData(allTags);
-    });
-  };
-
-  const handleFileChange = (event) => {
-    readExifData(event.target.files[0]);
-  };
-
+  const starterButtons = "bg-white text-black px-5 py-2 rounded-md hover:scale-110 duration-300 drop-shadow-2xl font-bold"
   return (
-    <div className={styles.content}>
-      <h1 className={styles.title}>Hello World</h1>
-      <input type="text" className={styles.input} />
-      {/* <button className={styles.button} onClick={selectDirectory}>Select Directory</button> */}
-      <input type="file" onChange={handleFileChange} />
-      <Link href="/red">Press Me to GO back</Link>
-      <div>
-      {Object.entries(metaData)
-  // .filter(([key]) => keysToExtract.includes(key))
-  .map(([key, value]) => (
-    <div key={key}>
-      {key}: {typeof value === 'object' ? JSON.stringify(value) : value}
-    </div>
-))}
-  </div>
+    <div className="w-screen h-screen flex gradient-background bg-gradient-to-r from-gradient-light 
+    via-gradient-dark to-gradient-darker flex items-center justify-center font-custom  cursor-default flex-col">
+      <h1 className='text-6xl color-white text-white font-bold'>SD Organizer</h1>
+      <h3 className='text-1xl color-white text-white font-thin mt-3'>Organize your photos</h3>
+      <div className='flex mt-5 gap-5'>
+        <button className={starterButtons}>Get Started</button>
+        <button className={starterButtons}>Learn More</button>
+      </div>
     </div>
   )
 }
