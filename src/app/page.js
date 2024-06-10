@@ -22,9 +22,10 @@ export default function Home() {
       <h1 className='text-6xl color-white text-white font-bold'>SD Organizer</h1>
       <h3 className='text-1xl color-white text-white font-thin mt-3'>Organize your photos</h3>
       <div className='flex mt-5 gap-5'>
-        <button className={starterButtons}>Get Started</button>
-        <button className={starterButtons}>Learn More</button>
+        <Link href="dir" className={starterButtons}>Get Started</Link>
+        <Link href="moreinfo" className={starterButtons}>Learn More</Link>
       </div>
     </div>
+
   )
 }
