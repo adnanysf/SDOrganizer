@@ -39,7 +39,6 @@ export default function Red(){
     //         return validPhotoExtensions.includes(ext);
     //       });
     //     setPhotoFiles(newPhotoFiles);
-
     // }
     const readExifData = (imageFiles) => {
         imageFiles.forEach(imageFile => {
